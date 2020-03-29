@@ -16,7 +16,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 ASKING, TYPING_NEW_QUESTION = range(2)
 main_reply_keyboard = [[config['buttons']['ask']], [config['buttons']['q_list']]]
-main_reply_markup = ReplyKeyboardMarkup(main_reply_keyboard, one_time_keyboard=True)
+main_reply_markup = ReplyKeyboardMarkup(main_reply_keyboard, one_time_keyboard=True, resize_keyboard=True)
 
 
 def start(update: telegram.update.Update, context: telegram.ext.callbackcontext.CallbackContext):
@@ -28,7 +28,7 @@ def start(update: telegram.update.Update, context: telegram.ext.callbackcontext.
 def ask(update: telegram.update.Update, context: telegram.ext.callbackcontext.CallbackContext):
     reply_keyboard = [[config['buttons']['cancel_ask']]]
 
-    reply_markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
+    reply_markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True, resize_keyboard=True)
 
     update.message.reply_text(text=config['messages']['ask'], reply_markup=reply_markup)
 
@@ -38,7 +38,7 @@ def ask(update: telegram.update.Update, context: telegram.ext.callbackcontext.Ca
 def q_list(update: telegram.update.Update, context: telegram.ext.callbackcontext.CallbackContext):
     reply_keyboard = [[config['buttons']['ask']]]
 
-    reply_markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
+    reply_markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True, resize_keyboard=True)
 
     update.message.reply_text(text=config['messages']['q_list'], reply_markup=reply_markup)
 
